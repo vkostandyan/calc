@@ -18,7 +18,7 @@ Instruction Loader::parseLine(const std::string& raw, std::vector<int32_t>& cons
 		ss >> dst >> src;
 		stripComma(dst);
 
-		if (dst[0] == 'r')   // MOV rN, ...
+		if (dst[0] == 'r')
 		{
 			uint8_t D = static_cast<uint8_t>(std::stoi(dst.substr(1)));
 
@@ -37,7 +37,7 @@ Instruction Loader::parseLine(const std::string& raw, std::vector<int32_t>& cons
 				return { static_cast<uint8_t>(OpCode::LOAD_VAR), D, addr, 0 };
 			}
 		}
-		else if (dst[0] == '[')   // MOV [addr], rN  → STORE_VAR
+		else if (dst[0] == '[')
 		{
 			std::string addrStr = dst.substr(1);
 			if (!addrStr.empty() && addrStr.back() == ']') addrStr.pop_back();

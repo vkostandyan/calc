@@ -44,11 +44,7 @@ std::vector<Tok> lex(std::stringstream& in) {
     return out;
 }
 
-} // namespace compiler
-#include "../includes/Node.hpp"
-
-void readNum(std::stringstream& line, std::vector<std::string>& words)
-{
+}
 	std::string s;
 	while (line.peek() != EOF && std::isdigit(line.peek()))
 		s += line.get();

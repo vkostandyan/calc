@@ -3,15 +3,15 @@
 #include "Compiler.hpp"
 #include <bitset>
 
-static constexpr uint16_t MEM_SIZE       = 0xFFFF;   // 65535 addressable words
+static constexpr uint16_t MEM_SIZE       = 0xFFFF;
 
 static constexpr uint16_t CODE_BASE      = 0x0000;
-static constexpr uint16_t CODE_LIMIT     = 0x1FFF;   // up to 8192 instructions
+static constexpr uint16_t CODE_LIMIT     = 0x1FFF;
 
 static constexpr uint16_t DATA_BASE      = 0x2000;
 static constexpr uint16_t DATA_LIMIT     = 0x3FFF;
 
-static constexpr uint16_t STACK_BASE     = 0xFFFE;   // SP initial value (grows down)
+static constexpr uint16_t STACK_BASE     = 0xFFFE;
 static constexpr uint16_t STACK_LIMIT    = 0x4000;
 
 struct Instruction;

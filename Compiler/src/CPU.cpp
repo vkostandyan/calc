@@ -115,7 +115,6 @@ void CPU::execute(const Instruction& inst, const uint8_t op, Memory* mem)
 		break;
 
 	case OpCode::CALL:
-		// printf("CALL\n");
 		push(IP+1, mem);
 		push(reg(REG_FP), mem);
 		setReg(REG_FP, SP);
@@ -124,7 +123,7 @@ void CPU::execute(const Instruction& inst, const uint8_t op, Memory* mem)
 		break;
 
 	case OpCode::RET:
-		setReg(REG_FP, pop(mem)); // restore previous FP
+		setReg(REG_FP, pop(mem));
 	    IP = pop(mem);
 		break;
 

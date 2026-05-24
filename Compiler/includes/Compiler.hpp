@@ -27,10 +27,9 @@ NodePtr parse_expression(std::vector<Tok>& toks, size_t& pos);
 NodePtr parse_statement(std::vector<Tok>& toks, size_t& pos);
 double run(NodePtr& root);
 
-// small convenience REPL
 int repl();
 
-} // namespace compiler
+}
 #pragma once
 
 #include "NodeType.hpp"
@@ -67,13 +66,10 @@ enum class State
 
 inline State FSM[3][6] =
 {
-	// Start
 	{ State::Wait_operator, State::Wait_operator, State::Error, State::Wait_operand, State::Error, State::Error },
 
-	// Wait_operator
 	{ State::Error, State::Error, State::End, State::Error, State::Wait_operator, State::Wait_operand },
 
-	// Wait_operand
 	{ State::Wait_operator, State::Wait_operator, State::Error, State::Wait_operand, State::Error, State::Error }
 };
 

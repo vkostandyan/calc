@@ -7,7 +7,6 @@
 
 namespace compiler {
 
-// AST node types
 struct NumberNode : Node { double value; NumberNode(double v):value(v){} };
 struct VarNode : Node { std::string name; VarNode(std::string n):name(std::move(n)){} };
 struct BinaryNode : Node { char op; NodePtr left, right; BinaryNode(char o, NodePtr l, NodePtr r):op(o),left(std::move(l)),right(std::move(r)){} };
@@ -40,7 +39,6 @@ NodePtr parse_expression(std::vector<Tok>& toks, size_t& pos) {
 }
 
 NodePtr parse_statement(std::vector<Tok>& toks, size_t& pos) {
-	// assignment: Ident '=' expr
 	if (toks[pos].kind==TokKind::Ident && toks[pos+1].kind==TokKind::Assign) {
 		std::string name = toks[pos].text; pos+=2;
 		auto expr = parse_expression(toks,pos);
@@ -49,7 +47,6 @@ NodePtr parse_statement(std::vector<Tok>& toks, size_t& pos) {
 	return parse_expression(toks,pos);
 }
 
-// evaluation
 static double eval_node(Node* n, std::unordered_map<std::string,double>& sym) {
 	if (auto nn = dynamic_cast<NumberNode*>(n)) return nn->value;
 	if (auto vn = dynamic_cast<VarNode*>(n)) {
@@ -94,7 +91,7 @@ int repl() {
 	return 0;
 }
 
-} // namespace compiler
+}
 #include "../includes/Compiler.hpp"
 
 int32_t insideFunction = 0;
@@ -360,7 +357,6 @@ std::unique_ptr<Node> parseReturn(std::vector<Token> &tokens, SymbolTable &ST, i
 
 	auto node = std::make_unique<ReturnNode>();
 
-	// return;
 	if (tokens[pos].type == NodeType::Semi)
 	{
 		pos++;

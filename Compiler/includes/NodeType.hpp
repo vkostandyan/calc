@@ -13,22 +13,22 @@ enum class NodeType
 	Num,
 	Var,
 	EofEx,
-	OpBr,		// (
-	ClBr,		// )
-	Op,			// + - * /
+	OpBr,
+	ClBr,
+	Op,
 	If,
 	While,
 	Else,
-	Comp,		// > < >= <= == !=
-	Assign,		// =
-	Not,		// !
-	Semi,		// ;
-	OpBody,		// {
-	ClBody,		// }
-	Type,		// int, void
-	Block,		// {}
-	Ret,		// return
+	Comp,
+	Assign,
+	Not,
+	Semi,
+	OpBody,
+	ClBody,
+	Type,
+	Block,
+	Ret,
 	Func,
-	Call,		// f()
-	Comma,		// ,
+	Call,
+	Comma,
 };

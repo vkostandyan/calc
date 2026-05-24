@@ -171,7 +171,6 @@ void VM::compileFunction(Node *node)
 {
 	FuncNode *fn = static_cast<FuncNode *>(node);
 	functions[fn->name] = static_cast<int32_t>(program.size());
-		// std::cout << "A\n";
 	for (int i = fn->params.size() - 1; i >= 0; --i)
 	{
 		int32_t reg = next++;
@@ -286,8 +285,6 @@ int32_t VM::compile(Node *node)
 	}
 }
 
-//  writeInExe()  –  writes the instruction list as text to ./exe
-
 void VM::writeInExe()
 {
 	std::fstream exe("./exe", std::ios::out | std::ios::trunc);
@@ -332,8 +329,6 @@ void VM::writeInExe()
 	}
 	headerStream << "\n";
 
-	// uint32_t headerSize = headerStream.str().size();
-
 	sections[0].offset = offset;
 	sections[1].offset = sections[0].offset + sections[0].size + 2;
 
@@ -365,19 +360,15 @@ void VM::writeInExeCode(std::ostream &exe)
 {
 	exe << "\n.CODE\n";
 
-	// std::cout << "it->first"<<"\n";
 	auto it = functions.begin();
 	while (it != functions.end())
 	{
-		// std::cout << it->first<<"\n";
 		if (it->first == "main")
 			break;
 		it++;
 	}
-	// auto main_it = std::find(functions.begin(), functions.end(), "main");
 	if (it != functions.end())
 		exe << "CALL " << it->second << std::endl;
-	// 	throw std::runtime_error("Undefined __start___");
 	exe << "EXIT"<< std::endl;
 
 	for (size_t i = 0; i < program.size(); i++)
